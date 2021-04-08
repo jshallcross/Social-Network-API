@@ -66,6 +66,40 @@ deleteUser(req, res) {
     .catch((err) => {
         res.status(404).json(err);
     })
+},
+
+// add a friend to a user
+addFriend({params}, res) {
+    User.findOneAndUpdate(
+        {_id: params.userId},
+        {$push: {friends: params.friendId}},
+        {runValidators: true, new: true}
+    )
+    .then((dbUsedData) => {
+        if (!dbUsedData) {
+            res.status(404).json({message: "Could not add friend, No user with that ID"});
+            return;
+        }
+        res.json(dbUsedData);
+    })
+    .catch((err) => res.status(404).json(err));
+},
+
+// delete a friend from a user
+deleteFriend({params}, res) {
+    User.findOneAndUpdate (
+        {_id: params.userId},
+        {$pull: {friends: params.friendId}},
+        {new: true}
+    )
+    .then((dbUsedData) => {
+        if (!dbUsedData) {
+            res.status(404).json({message: "Could not delete friend, No user with that ID"});
+            return;
+        }
+        res.json(dbUsedData);
+    })
+    .catch((err) => res.json(err));
 }
 
 }

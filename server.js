@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-//app.use(require('./routes'));
+app.use(require('./routes'));
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-media', {
     useFindAndModify: false,
@@ -19,4 +19,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-media', 
 
 mongoose.set('debug', true);
 
-app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT} 🌍`));nj
+app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT} 🌍`));

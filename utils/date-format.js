@@ -81,7 +81,10 @@ const addDateSuffix = date => {
       hour = 12;
     }
   
-    const minutes = dateObj.getMinutes().padStart(2,"0");
+    let minutes = dateObj.getMinutes();
+    if (minutes < 10 ) {
+      minutes = "0" + minutes;
+    }
   
     // set `am` or `pm`
     let periodOfDay;

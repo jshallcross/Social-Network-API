@@ -30,6 +30,7 @@ getSingleUser({ params}, res) {
         select: '-__v'
         })
         .select('-__v')
+        .sort({ _id: -1})
         .then((dbUsedData) => {
             if(!dbUsedData) {
                 res.status(404).json({message: "No user with that ID"});

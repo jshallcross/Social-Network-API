@@ -71,8 +71,8 @@ const addDateSuffix = date => {
   
     let hour;
     // check for 24-hr time
-    if (dateObj.getHours > 12) {
-      hour = Math.floor(dateObj.getHours() / 2);
+    if (dateObj.getHours() > 12) {
+      hour = Math.floor(dateObj.getHours() - 12);
     } else {
       hour = dateObj.getHours();
     }
